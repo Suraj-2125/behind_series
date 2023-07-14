@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="cont.css">
+
+<script>
+function showHint(str) {
+  if (str.length == 0) {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "gethint.php?q=" + str, true);
+    xmlhttp.send();
+  }
+}
+</script>
+</head>
+<body>
+
+<section id="contact">
+  <div class="contact-box">
+    <div class="contact-links">
+      <h2>CONTACT</h2>
+      <div class="links">
+        <div class="link">
+          <a><img src="https://i.postimg.cc/m2mg2Hjm/linkedin.png" alt="linkedin"></a>
+        </div>
+        <div class="link">
+          <a><img src="https://i.postimg.cc/YCV2QBJg/github.png" alt="github"></a>
+        </div>
+        <div class="link">
+          <a><img src="https://i.postimg.cc/W4Znvrry/codepen.png" alt="codepen"></a>
+        </div>
+        <div class="link">
+          <a><img src="https://i.postimg.cc/NjLfyjPB/email.png" alt="email"></a>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wrapper">
+      <form>
+        <div class="form-item">
+          <input type="text" name="sender" required="" onkeyup="showHint(this.value)">
+          <label>Name:</label>
+        </div>
+        <div class="form-item">
+          <input type="text" name="email" required=""onkeyup="showHint(this.value)">
+          <label>Email:</label>
+        </div>
+        <div class="form-item">
+          <textarea class="" name="message" required=""onkeyup="showHint(this.value)"></textarea>
+          <label>Message:</label>
+        </div>
+        <button class="submit-btn" id="textHint">Send</button>  
+      </form>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Add Review</title><link rel="stylesheet" href="./bs.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=PT+Sans'><link rel="stylesheet" href="./pop.css">
+<script>
+function change_myselect(sel) {
+  const dbParam = JSON.stringify({table:sel,limit:20});
+  const xmlhttp = new XMLHttpRequest();
+  xmlhttp.onload = function() {
+    const myObj = JSON.parse(this.responseText);
+    let text = "<table border='1'>"
+    for (let x in myObj) {
+      text += "<tr><td>" + myObj[x].name + "</td></tr>";
+    }
+    text += "</table>"
+    document.getElementById("demo").innerHTML = text;
+  }
+  xmlhttp.open("POST", "json_demo_html_table.php");
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send("x=" + dbParam);
+}
+
+document.getElementById("02").innerHTML = "<p>Hello World!</p>";
+</script>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      <table border="0" width="80%" align="center"><tr><p>Give Review as User</p></tr></table>
+</button><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  <table border="0" width="80%" align="center"><tr><p>Give Review as Provider</p></tr></table>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="column" id="main">
+          <h1>Give Review</h1>
+          <form action="add_series.php">
+            <div class="form-group">
+              <input type="name" class="form-control" id="exampleInputName" placeholder="Series Name" name="SERIES_NAME">
+            </div>
+            <div class="form-group">
+              <input type="name" class="form-control" id="exampleInputName" placeholder="Short Discription" name="S_DESCRIPTION">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="P-ID" name="P_ID">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Series Genere:</label>
+                  <select department="dept" id="myselect" class="form-group" onchange="change_myselect(this.value)">
+      <option value="Choose" >Choose an option:</option>
+      <option value="Thriller" name="Genere">Thriller</option>
+      <option value="Sci-fi" name="Genere">Sci-fi</option>
+      <option value="Romentic" name="Genere">Romentic</option>
+      <option value="Action" name="Genere">Action</option>
+      <option value="Comedy" name="Genere">Comedy</option>
+    </select>
+
+            </div>
+            <div class="form-group">
+              <label align="center">Series Type: </label><br>
+              <input type="radio" name="type"><label>TV-SERIES</label>
+              <input type="radio" name="type"><label>TV-SHOW</label>
+            </div>
+              <input type="checkbox" value="" id="check" /><label>I Watched it</label>
+           
+            <button type="submit" class="btn btn-primary"> Add Review</button>
+          </form>
+        </div>
+        <div>
+          <?xml version="1.0" encoding="UTF-8"?>
+          <svg width="67px" height="578px" viewBox="0 0 67 578" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+              <title>Path</title>
+              <desc>Created with Sketch.</desc>
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <path d="M11.3847656,-5.68434189e-14 C-7.44726562,36.7213542 5.14322917,126.757812 49.15625,270.109375 C70.9827986,341.199016 54.8877465,443.829224 0.87109375,578 L67,578 L67,-5.68434189e-14 L11.3847656,-5.68434189e-14 Z" id="Path" fill="#fcde80"></path>
+              </g>
+          </svg>
+        </div>
+        <div class="column" id="secondary">
+          <div class="sec-content">
+            <h2>Want To Watch</h2>
+            <h3>If You Want To Watch and Download New Movies and Series Click Below</h3>
+            <a href="https://themoviesverse.net/"><button type="button" class="btn btn-primary">Download</button></a> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/popper.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'></script>
+</body>
+</html>
